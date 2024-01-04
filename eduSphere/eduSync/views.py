@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from eduSync.emailBackend import emailBackend
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # Create your views here.
 def GENERIC(request):
@@ -24,9 +25,10 @@ def signin(request):
                 return HttpResponse("This is Student Panel")
             else:
                 # Message for login error
+                messages.error(request, "Incorrect Credentials")
                 return redirect('login')
         else:
-                # Message for login error
+                messages.error(request, "Incorrect Credentials")
                 return redirect('login')
             
 
